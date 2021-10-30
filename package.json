@@ -1,6 +1,6 @@
 {
   "name": "blog-friends-embed",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "widgets.js",
   "license": "MIT",
   "scripts": {

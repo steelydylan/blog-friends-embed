@@ -6,14 +6,14 @@ const main = () => {
     const user = (item as HTMLElement).dataset.user
     const test = (item as HTMLElement).dataset.test
     const parent = item.parentElement
-    parent.removeChild(item)
     const iframe = document.createElement('iframe')
     const targetUrl = test ? 'http://localhost:3000' : 'https://blog-friends.com'
     iframe.src = `${targetUrl}/users/${user}/embed`
     iframe.style.border = "none"
     iframe.style.width = "100%"
     iframe.name = `blog-friends-${shortid()}`;
-    parent.appendChild(iframe)
+    item.after(iframe)
+    parent.removeChild(item)
   }
   window.addEventListener('message', function(event) {
     try {
