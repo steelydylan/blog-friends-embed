@@ -1,0 +1,15 @@
+{
+  "name": "blog-friends-embed",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "esbuild --bundle --minify ./src/widgets.ts > widgets.js"
+  },
+  "devDependencies": {
+    "esbuild": "^0.13.10"
+  },
+  "dependencies": {
+    "shortid": "^2.2.16"
+  }
+}
