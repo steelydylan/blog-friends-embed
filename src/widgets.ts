@@ -1,13 +1,14 @@
 import shortid from "shortid"
 
+const isDev = process.env.NODE_ENV === "development";
+
 const main = () => {
   const items = document.querySelectorAll(".js-blog-friends")
+  const targetUrl = isDev ? 'http://localhost:3000' : 'https://blog-friends.com'
   for (const item of items) {
     const user = (item as HTMLElement).dataset.user
-    const test = (item as HTMLElement).dataset.test
     const parent = item.parentElement
     const iframe = document.createElement('iframe')
-    const targetUrl = test ? 'http://localhost:3000' : 'https://blog-friends.com'
     iframe.src = `${targetUrl}/users/${user}/embed`
     iframe.style.border = "none"
     iframe.style.width = "100%"
@@ -18,7 +19,7 @@ const main = () => {
   window.addEventListener('message', function(event) {
     try {
       const data = JSON.parse(event.data)
-      if (!data.isEmbed) {
+      if (!data.isEmbed || event.origin !== targetUrl) {
         return
       }
       const iframe = document.querySelector(`[name="${data.name}"]`) as HTMLIFrameElement
